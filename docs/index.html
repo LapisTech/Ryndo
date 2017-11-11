@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="icon" href="favicon.ico?0" type="image/vnd.microsoft.icon">
+<link rel="shortcut icon" href="favicon.ico?0" type="image/vnd.microsoft.icon">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="apple-touch-icon" sizes="152x152" href="apple-touch-icon-precomposed.png?0">
+<title>Ryndo - Tab Explorer</title>
+<script>
+var V=0;
+var langs=[];
+function LoadCSS(l){var t=document.createElement('link');t.rel = 'stylesheet';t.type = 'text/css';t.href = './'+l+'.css?'+V;document.head.appendChild(t);}
+function LoadLang(l){if(l==='en'){return;}var c=document.head.children,i;for(i=0;i<c.length;++i){if(c[i].rel==='stylesheet'&&c[i].href==l+'.css'){return;}}LoadCSS(l);}
+function SetLang(l){if(langs.indexOf(l)<0){return;}LoadLang(l);langs.forEach(function(g){document.body.classList[g===l?'add':'remove'](g);});}
+function ChangeLang(e){var s=e.srcElement;SetLang(s.options[s.selectedIndex].value);}
+function GetLang(){return ((navigator.languages||[])[0])||(window.navigator.userLanguage||window.navigator.language||window.navigator.browserLanguage||'en').substr(0,2)||'en';}
+function Init(){var l=document.getElementById('lang'),o=l.options,i,g=GetLang();for(i=0;i<o.length;++i){langs.push(o[i].value);if(o[i].value===g){o[i].selected=true;}}l.addEventListener('change',ChangeLang,false);SetLang(g);}
+document.addEventListener('DOMContentLoaded',Init);
+</script>
+<style>
+@font-face{font-family:"Yu Gothic";src:local("Yu Gothic Medium");font-weight:100;}
+@font-face{font-family:"Yu Gothic";src:local("Yu Gothic Medium");font-weight:200;}
+@font-face{font-family:"Yu Gothic";src:local("Yu Gothic Medium");font-weight:300;}
+@font-face{font-family:"Yu Gothic";src:local("Yu Gothic Medium");font-weight:400;}
+@font-face{font-family:"Yu Gothic";src:local("Yu Gothic Bold");font-weight:bold;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{height:100%;font-size:20px;}
+body{padding:3rem 0 0;height:100%;}
+select{padding:0.1rem 0.3rem;border-radius:0.1rem;}
+header{color:lightgray;width:100%;height:3rem;position:absolute;top:0;left:0;z-index:10;}
+h1{font-size:3rem;}
+article{width:100%;height:100%;overflow:auto;}
+section{width:100%;height:100%;position:relative;padding:1rem;}
+footer{height:1.2rem;width:100%;text-align:center;position:absolute;bottom:0;left:0;overflow:hidden;}
+body,select{font-family:"Yu Gothic",YuGothic;}
+#lang{position:absolute;top:0;right:0;font-size:1rem;}
+</style>
+</head>
+<body>
+	<header>
+		<h1>Ryndo</h1>
+		<select id="lang"><option value="en">English</option><option value="ja">日本語</option></select>	
+	</header>
+	<article>
+		<section>
+			<footer><small>&copy; 2017 Lapis Tech</small></footer>
+		</section>
+	</article>
+</body>
+</html>
