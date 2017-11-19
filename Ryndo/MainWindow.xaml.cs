@@ -27,24 +27,17 @@ namespace Ryndo
         {
             InitializeComponent();
 
+            // Init tab data.
             this.data = new Data(this.Tab);
 
+            // Set tab data.
             this.Tab.ItemsSource = data.List;
 
+            // Resize event.
             SizeChanged += (s, e) => { this.data.Resize(this.Tab.SelectedIndex); };
 
+            // Add tab event.
             this.data.AddTab();
-
-        }
-
-        private void LoadedTabControl(object sender, RoutedEventArgs e)
-        {
-            Console.WriteLine("LoadedTabControl:" + sender.ToString());
-        }
-
-        private void OnChangeTab(object sender, RoutedEventArgs e)
-        {
-            Console.WriteLine("ChangeTab:" + sender.ToString());
         }
 
         public void OnAddTab(object sender, RoutedEventArgs e)
@@ -153,6 +146,8 @@ namespace Ryndo
                 if (explorer == null) { return; }
                 explorer.Maximize();
             };
+            this.Content.ClipToBounds = true;
+            //this.Content.Margin = new Thickness(0, -10, 0, 0);
 
             this.Close = new Button();
             this.Close.Content = "x";
